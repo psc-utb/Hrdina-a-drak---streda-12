@@ -6,75 +6,13 @@ using System.Threading.Tasks;
 
 namespace Hrdina_a_drak___streda_12
 {
-    public class Hrdina
+    public class Hrdina : Postava
     {
-        public string Jmeno { get; set; }
-        public double Zdravi { get; set; }
-        public double ZdraviMax { get; set; }
-        public double PoskozeniMax { get; set; }
-        public double ZbrojMax { get; set; }
+        public Mec Mec { get; set; }
 
-        public bool Utekl { get; set; }
-
-        public Hrdina(string jmeno, double zdravi, double zdraviMax, double poskozeniMax, double zbrojMax)
+        public Hrdina(string jmeno, double zdravi, double zdraviMax, double poskozeniMax, double zbrojMax, Mec mec) : base(jmeno, zdravi, zdraviMax, poskozeniMax, zbrojMax)
         {
-            Jmeno = jmeno;
-            Zdravi = zdravi;
-            ZdraviMax = zdraviMax;
-            PoskozeniMax = poskozeniMax;
-            ZbrojMax = zbrojMax;
-            Utekl = false;
-        }
-
-        public double Utok(Drak oponent)
-        {
-            if (MuzeBojovat())
-            {
-                double hodnotaUtoku = 0;
-
-                Random rnd = new Random();
-                hodnotaUtoku = rnd.NextDouble() * PoskozeniMax;
-                hodnotaUtoku -= oponent.Obrana();
-                oponent.SnizZdravi(hodnotaUtoku);
-
-                return hodnotaUtoku;
-            }
-            else
-                throw new Exception("Hrdina útočí a přitom už nemůže bojovat!");
-        }
-
-        public double Obrana()
-        {
-            double hodnotaObrany = 0;
-
-            //dodelat
-
-            return hodnotaObrany;
-        }
-
-        public void SnizZdravi(double hodnotaSnizeni)
-        {
-            if (hodnotaSnizeni > 0)
-            {
-                Zdravi -= hodnotaSnizeni;
-            }
-        }
-
-        public bool MuzeBojovat()
-        {
-            return JeZivy() && Utekl == false;
-        }
-
-        public bool JeZivy()
-        {
-            if (Zdravi > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            Mec = mec;
         }
 
     }
