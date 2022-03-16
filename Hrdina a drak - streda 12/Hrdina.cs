@@ -15,5 +15,22 @@ namespace Hrdina_a_drak___streda_12
             Mec = mec;
         }
 
+        public Hrdina(string jmeno, double zdraviMax, double poskozeniMax, double zbrojMax) : this(jmeno, zdraviMax, zdraviMax, poskozeniMax, zbrojMax, null)
+        {
+        }
+
+
+        public override double Utok(Postava oponent)
+        {
+            if (Mec != null)
+            {
+                return Utok(oponent, Mec.PoskozeniMax);
+            }
+            else
+            {
+                //return Utok(oponent, PoskozeniMax);
+                return base.Utok(oponent);
+            }
+        }
     }
 }
