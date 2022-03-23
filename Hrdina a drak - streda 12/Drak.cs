@@ -13,6 +13,9 @@ namespace Hrdina_a_drak___streda_12
         {
         }
 
-        
+        public override bool KontrolaOponenta(Postava oponent)
+        {
+            return oponent is not Drak;
+        }
     }
 }
