@@ -16,6 +16,9 @@ namespace Hrdina_a_drak___streda_12
         public double ZbrojMax { get; set; }
         public bool Utekl { get; set; }
 
+        private Postava oponent;
+        public event Action<Postava, Postava> VybranNovyOponent;
+
         public Postava(string jmeno, double zdravi, double zdraviMax, double poskozeniMax, double zbrojMax)
         {
             Jmeno = jmeno;
@@ -69,6 +72,12 @@ namespace Hrdina_a_drak___streda_12
             {
                 if (postava.MuzeBojovat() && postava != this && KontrolaOponenta(postava))
                 {
+                    if (postava != oponent)
+                    {
+                        oponent = postava;
+                        VybranNovyOponent?.Invoke(this, oponent);
+                    }
+
                     return postava;
                 }
             }
