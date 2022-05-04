@@ -63,6 +63,11 @@ namespace Hrdina_a_drak___streda_12
             }
         }
 
+        public Task BojAsync()
+        {
+            return Task.Run(Boj);
+        }
+
         public bool LzeBojovat()
         {
             if (PocetBojujicichPostav() > 0)
@@ -91,5 +96,16 @@ namespace Hrdina_a_drak___streda_12
             Console.WriteLine($"Postava: {utocnik.Jmeno} si vybrala nového oponenta: {oponent.Jmeno}");
         }
 
+        public void StatistikyPostav()
+        {
+            double prumerSilyPostav = Postavy.Average(postava => postava.SilaPostavy());
+            Console.WriteLine($"Průměrná síla postav je: {prumerSilyPostav}");
+
+            List<Postava> draci = Postavy.FindAll(postava => postava is Drak);
+            draci.ForEach(postava => Console.WriteLine(postava.ToString()));
+            //draci.ForEach(Console.WriteLine);
+
+            Console.WriteLine(String.Empty);
+        }
     }
 }
